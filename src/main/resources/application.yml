@@ -1,0 +1,23 @@
+server:
+    port: 8000
+spring:
+    main:
+        lazy-initialization: true
+    application:
+        name: "jpa-demo"
+    datasource:
+        url: jdbc:mysql://127.0.0.1:3306/jpa-demo?useUnicode=true&rewriteBatchedStatements=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&tinyInt1isBit=false
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password:
+    jpa:
+        open-in-view: false
+        show-sql: true
+        properties:
+            hibernate:
+                jdbc:
+                    batch_size: 10
+                    order_inserts: true
+                    order_updates: true
+                format_sql: true
+                dialect: org.hibernate.dialect.MySQL5Dialect
