@@ -6,13 +6,10 @@ import mrjy.online.springboot.demo.entity.UserEntity;
 import mrjy.online.springboot.demo.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.stream.Collectors;
 
 @SpringBootTest
 @Slf4j

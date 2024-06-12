@@ -21,3 +21,6 @@ spring:
                     order_updates: true
                 format_sql: true
                 dialect: org.hibernate.dialect.MySQL5Dialect
+    graphql:
+        graphiql:
+             enabled: true
