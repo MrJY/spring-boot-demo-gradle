@@ -1,4 +1,4 @@
-package mrjy.online.springboot.demo;
+package mrjy.online.springboot.demo.jpa;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.alibaba.fastjson2.JSONObject;
@@ -63,6 +63,10 @@ public class JpaQuerydslTests {
 		JPAQuery<Tuple> query = queryFactory.select(qUserEntity.id, qUserEntity.username)
 				.from(qUserEntity)
 				.where(qUserEntity.password.like("%a%"));
+//		JPAQuery<UserEntity> query = queryFactory.select(QUserEntity)
+//				.from(qUserEntity)
+//				.where(qUserEntity.password.like("%a%"));
+
 		List<Tuple> fetch = query.fetch();
 
 		fetch.forEach(tuple -> {

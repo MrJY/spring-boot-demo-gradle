@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Set;
 
 @Getter
@@ -35,4 +37,11 @@ public class CourseEntity extends BaseEntity{
     @JoinColumn(name = "course_code", referencedColumnName = "course_code")
     private Set<CourseTeacherEntity> courseTeacher;
 
+
+    public static void main(String[] args) {
+        LocalDate now = LocalDate.now();
+        LocalDate plus = now.plusDays(1);
+        long daysBetween = ChronoUnit.DAYS.between(now, plus);
+        System.out.print(daysBetween);
+    }
 }
