@@ -32,9 +32,4 @@ public class JpaCourseQuerydslTests {
 		System.out.println(CollectionUtil.newArrayList(all));
 	}
 
-
-
-
-
-
 }
