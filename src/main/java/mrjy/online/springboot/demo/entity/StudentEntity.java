@@ -5,25 +5,29 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedEntityGraphs;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+@NamedEntityGraphs(value = {
+    @NamedEntityGraph(name = StudentEntity.GRAPH_ALL,
+        attributeNodes = {
+            @NamedAttributeNode(value = "user")
+        }
+    )
+})
 @Getter
 @Setter
 @Entity
 @Table(name = "student", schema = "jpa-demo")
-public class StudentEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", columnDefinition = "int UNSIGNED not null")
-    private Long id;
+public class StudentEntity extends BaseEntity {
+    public static final String GRAPH_ALL = "StudentEntity.all";
 
-    @Column(name = "user_id")
-    private Integer userId;
-
-    @Column(name = "student_no", length = 64)
+    @Column(name = "student_no", length = 64, insertable = false, updatable = false)
     private String studentNo;
 
     @Column(name = "name", length = 64)
@@ -34,5 +38,9 @@ public class StudentEntity {
 
     @Column(name = "age")
     private Integer age;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_no",referencedColumnName = "username")
+    private UserEntity user;
 
 }

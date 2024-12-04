@@ -5,27 +5,27 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedEntityGraphs;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Set;
+import java.util.List;
 
+@NamedEntityGraphs(value = {
+    @NamedEntityGraph(name = CourseEntity.COURSE_GRAPH_ALL,
+        attributeNodes = {
+            @NamedAttributeNode(value = "courseTeacher")
+        }
+    )
+})
 @Getter
 @Setter
 @Entity
 @Table(name = "course", schema = "jpa-demo")
 public class CourseEntity extends BaseEntity{
     public static final String COURSE_GRAPH_ALL = "CourseEntity.all";
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Integer id;
 
     @Column(name = "course_name")
     private String courseName;
@@ -35,13 +35,5 @@ public class CourseEntity extends BaseEntity{
 
     @OneToMany
     @JoinColumn(name = "course_code", referencedColumnName = "course_code")
-    private Set<CourseTeacherEntity> courseTeacher;
-
-
-    public static void main(String[] args) {
-        LocalDate now = LocalDate.now();
-        LocalDate plus = now.plusDays(1);
-        long daysBetween = ChronoUnit.DAYS.between(now, plus);
-        System.out.print(daysBetween);
-    }
+    private List<CourseTeacherEntity> courseTeacher;
 }

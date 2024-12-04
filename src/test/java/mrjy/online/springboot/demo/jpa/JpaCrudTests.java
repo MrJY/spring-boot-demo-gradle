@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @SpringBootTest
 @Slf4j
-public class JpaSimpleTests {
+public class JpaCrudTests {
 
     @Resource(type = UserRepository.class)
     private UserRepository userRepository;
